@@ -1,0 +1,270 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    list-style: none;
+    background: none;
+    font-family: system-ui;
+}
+
+.container {
+    max-width: 1140px;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.header {
+    height: 76px;
+    background: #F3EDF7;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0px 20px;
+
+        &-title {
+            font-size: 22px;
+            color: #1C1B1F;
+            font-weight: 400;
+        }
+
+        button {
+            font-size: 23px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #1C1B1F;
+            display: flex;
+        }
+
+        input {
+            width: 85%;
+            font-size: 16px;
+        }
+    }
+}
+
+.notes {
+    margin-top: 30px;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            font-weight: 400;
+            font-size: 22px;
+            color: #323232;
+        }
+
+        button {
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+            border-radius: 16px;
+            font-size: 14px;
+            align-items: center;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+            background: rgba(103, 80, 164, 0.11);
+            width: 121px;
+            height: 56px;
+            justify-content: center;
+            color: #6750A4;
+            font-weight: 500;
+            @media (max-width: 640px) {
+    display: none;
+    visibility: hidden;                
+            }
+        }
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 30px;
+        @media (max-width: 1024px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 642px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        &.list {
+            grid-template-columns: none;
+        }
+    }
+
+    &__item {
+        box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        background: rgba(103, 80, 164, 0.05);
+        border-radius: 16px;
+        padding: 16px;
+
+        &-top {
+            h2 {
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 1.1;
+                color: #1c1b1f;
+                letter-spacing: 0.01em;
+            }
+
+            span {
+                letter-spacing: 0.02em;
+                font-size: 14px;
+                color: #cac4d0;
+                line-height: 1.4;
+            }
+        }
+
+        p {
+            margin: 10px 0 20px;
+            font-size: 14px;
+            color: #49454f;
+            line-height: 1.4;
+        }
+
+        &-btns {
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                padding: 12px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.purple,
+.red {
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s;
+    color: #6750a4;
+    font-weight: 500;
+    border-radius: 5px;
+
+    &:hover {
+        background: #e6ddff;
+    }
+}
+
+.red {
+    color: #cf1b1b;
+
+    &:hover {
+        background: #ffe1e1;
+    }
+}
+
+.modal {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    position: fixed;
+    inset: 0;
+    background: #00000035;
+    z-index: 999;
+
+    &__block {
+        width: 312px;
+        background-color: #fffbfe;
+        border-radius: 28px;
+        padding: 24px;
+
+        h2 {
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 133%;
+            color: #1c1b1f;
+        }
+
+        &-inputs {
+            display: flex;
+            gap: 16px;
+            flex-direction: column;
+            margin: 16px 0 24px;
+
+            label {
+                position: relative;
+
+                input {
+                    width: 100%;
+                    height: 56px;
+                    background: #e7e0ec;
+                    border-radius: 4px 4px 0 0;
+                    padding: 23px 16px 8px;
+                    border-bottom: 1px solid #1c1b1f;
+                    transition: .3s ease-in-out;
+
+                    &:hover {
+                        border-bottom: 3px solid #6750A4;
+                    }
+
+                    &:focus~span {
+                        transform: scale(1);
+                        left: 16px;
+                    }
+                }
+
+                span {
+                    position: absolute;
+                    top: 8px;
+                    left: 6px;
+                    font-size: 12px;
+                    letter-spacing: 0.03em;
+                    font-weight: 500;
+                    color: #6750a4;
+                    line-height: 150%;
+                    transform: scale(0.7);
+                    transition: .3s;
+                }
+            }
+        }
+
+        &-btns {
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                padding: 10px 12px;
+
+                &:disabled {
+                    color: grey;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}
+
+.add-note {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+    background: #6650a420;
+    padding: 18px;
+    border-radius: 16px;
+    display: flex;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+}
